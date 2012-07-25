@@ -1,5 +1,5 @@
 // Users is a PRIVATE variable, only available within the scope of models/users.js
-var Users = [
+/*var Users = [
   {
     id:1
     ,name_first:"Bill"
@@ -25,14 +25,54 @@ var Users = [
     ,pass:"12345"
   }
 ];
+*/
+var mongo = require ('mongodb') 
+,Db = mongo.Db
+,Connection = mongo.Connection
+,Server = mongo.Server;
 
+var db = new Db('test', new Server("127.0.0.1", Connection.DEFAULT_PORT, {})) ;
+
+var hash = function (string) {
+  var crypto=require('crypto');
+  var sha = crypto.createHash('sha1');
+  sha.update(string);
+  var hash = sha.digest('hex');
+  return hash;
+};
 
 var UsersModel = {
 
-  list:function () {
-    return Users;
+  list:function (callback) {
+    
+    db.open(function(err,db){
+    
+    	db.collection('users', function(err, collection){
+    
+    		collection.find().toArray(function(err, results) {
+    			
+    			db.close();
+    			callback(results);
+    
+    	});
+    
+    });
+  
+  }); // db.
+}, //list()
+  
+  create:function (data) {
+  
+    data.pass = hash(data.pass);
+    
+    if (data.email){
+      Users.push(data);
+      return true;
+    }
+    
+    return false;
+    
   }
-
 };
 
 // make UsersModel PUBLICLY available to other code OUTSIDE the scope of models/users.js

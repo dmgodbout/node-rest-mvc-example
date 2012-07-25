@@ -3,5 +3,25 @@ h2
   
 ul
   for user in users
-   li #{user.name_first} #{user.name_last}
+   li #{user.name.first} #{user.name.last} 
    
+   
+form(action='/users',method='post')
+  label First Name:
+  input(name='user[name_first]')
+  br
+  label Last Name:
+  input(name='user[name_last]')
+  br
+  label Email:
+  input(name='user[email]')
+  br
+  label Role:
+  input(name='user[role]')
+  br
+  label Password:
+  input(name='user[pass]')
+  br
+  input(type='submit',value='Create User')
+  
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js")
