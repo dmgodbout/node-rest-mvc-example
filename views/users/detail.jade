@@ -1,0 +1,16 @@
+h1 #{user.name.first} #{user.name.last}
+p welcome to your profile page 
+
+form(action='/users',method='put')
+  label First Name:
+  input(name='user[name_first]')
+  br
+  label Last Name:
+  input(name='user[name_last]')
+  br
+  label Email:
+  input(name='user[email]')
+  br
+  label Role:
+  input(name='user[role]')
+  br

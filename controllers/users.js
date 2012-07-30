@@ -13,7 +13,9 @@ var UsersController = {
   
   }
   ,detail: function (req, res) {
+    UsersModel.detail(req.params.id,function(err,user){
     res.render('users/detail');
+   })
   }
   
   ,create:function (req, res) {

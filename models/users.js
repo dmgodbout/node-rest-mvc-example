@@ -26,10 +26,11 @@
   }
 ];
 */
+
 var mongo = require ('mongodb') 
-,Db = mongo.Db
-,Connection = mongo.Connection
-,Server = mongo.Server;
+	,Db = mongo.Db
+	,Connection = mongo.Connection
+	,Server = mongo.Server;
 
 var db = new Db('test', new Server("127.0.0.1", Connection.DEFAULT_PORT, {})) ;
 
@@ -56,7 +57,25 @@ var UsersModel = {
     
     	});
     
-    });
+    });  //collection
+  
+  }); // db.
+}, //list()
+
+  detail:function (callback) {
+    
+    db.open(function(err,db){
+    
+    	db.collection(':id', function(err, collection){
+    
+    		collection.find().toArray(function(err, results) {
+    			
+    			db.close();
+    			callback(results);
+    
+    	});
+    
+    });  //collection
   
   }); // db.
 }, //list()
