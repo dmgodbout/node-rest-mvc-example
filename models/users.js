@@ -78,7 +78,7 @@ var UsersModel = {
     });  //collection
   
   }); // db.
-}, //list()
+}, //detail()
   
   create:function (data) {
   
