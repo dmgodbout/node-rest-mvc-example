@@ -66,7 +66,7 @@ var UsersModel = {
     
     db.open(function(err,db){
     
-    	db.collection(':id', function(err, collection){
+    	db.collection('users', function(err, collection){
     
     		collection.find().toArray(function(err, results) {
     			

@@ -29,9 +29,26 @@ var UsersController = {
     }
   }
   
-  ,edit:function (req, res) {}
-  ,del:function (req, res) {}
+  ,edit:function (req, res) {
+    
+    var user = req.body.user;
+    
+    var edited = UsersModel.edit(user);
+    
+    if (edited) {
+      res.redirect('/users/:id');
+     }
+  }
   
+  ,del:function (req, res) {}
+  var user = req.body.user;
+    
+    var deleted = UsersModel.destroy(user);
+    
+    if (deleted) {
+      res.redirect('/users/');
+     }
+  }
 };
 
 // expose Users to rest of node application
